@@ -1,10 +1,6 @@
-###
-###
-# This script runs Biome-BGC for a random point in Canadian boreal forest
-###
-###
 
 repos <- c("https://predictiveecology.r-universe.dev", getOption("repos"))
+
 if (!exists("out")){
   out <- SpaDES.project::setupProject(
     paths = list(projectPath = getwd(),
@@ -50,7 +46,7 @@ if (!exists("out")){
       rtm <- terra::mask(rtm, out$studyArea, touches = FALSE)
       rtm
     }
-    out$params$BiomeBGC_core$parallel.cores <- 45
+    out$params$BiomeBGC_core$parallel.cores <- pars[,"cores"]
     out$params$BiomeBGC_dataPrep$climModel <- pars[,"climModel"]
     out$params$BiomeBGC_dataPrep$co2scenario <- pars[,"co2scenario"]
     out$paths$outputPath <- file.path("outputs", "ecoprovince", pars[,"ecoprovince"], pars[,"co2scenario"], pars[,"climModel"])

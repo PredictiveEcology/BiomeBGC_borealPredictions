@@ -3,8 +3,10 @@ if (!require("SpaDES.project")){
   Require::Install(c("SpaDES.project", "SpaDES.core", "reproducible"), repos = repos, dependencies = TRUE)
 }
 
+# Setup 
 projectPath <- "~/repos/BiomeBGC_BorealPredictions/"
 setwd(projectPath)
+n_core <- 45L # number of cores that will be used.
 
 # We will run Biome-BGC by ecoprovince within the canadian boreal forest
 # use this to loop across ecoprovinces
@@ -34,7 +36,7 @@ ecoprovinces <- unique(eco_boreal$ECOPROVINC)
 co2scenarios <- c("RCP45", "RCP85")
 climModel <- c("RCM4", "GCM4", "Hadley")
 
-expt_df <- expand.grid(cores = 45L, ecoprovince = ecoprovinces, co2scenario = co2scenarios, climModel = climModel)
+expt_df <- expand.grid(cores = n_core, ecoprovince = ecoprovinces, co2scenario = co2scenarios, climModel = climModel)
 expt_df <- data.table::setorder(expt_df, ecoprovince, co2scenario)
 
 for (i in 1:nrow(expt_df)) {
