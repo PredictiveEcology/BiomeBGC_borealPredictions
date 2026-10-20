@@ -1,14 +1,14 @@
 # Code to create figure 3:
 # 6 panels:
-# a) Map of mean temperature (20-year average 2000-2020).
-# b) Map of mean annual precipitation (20-year average 2000-2020).
-# c) Map of mean vapor pressure deficit (20-year average 2000-2020).
-# d) Map of change mean temperature under RCP4.5 (2080-2100 vs 2000-2020).
-# e) Map of change mean precipitation under RCP4.5 (2080-2100 vs 2000-2020).
-# f) Map of change mean vapor pressure deficit under RCP4.5 (2080-2100 vs 2000-2020).
-# g) Map of change mean temperature under RCP4.5 (2080-2100 vs 2000-2020).
-# h) Map of change mean precipitation under RCP4.5 (2080-2100 vs 2000-2020).
-# i) Map of change mean vapor pressure deficit under RCP4.5 (2080-2100 vs 2000-2020).
+# a) Map of mean temperature (30-year average 1991-2020).
+# b) Map of mean annual precipitation (30-year average 1991-2020).
+# c) Map of mean vapor pressure deficit (30-year average 1991-2020).
+# d) Map of change mean temperature under RCP4.5 (2071-2100 vs 1991-2020).
+# e) Map of change mean precipitation under RCP4.5 (2071-2100 vs 1991-2020).
+# f) Map of change mean vapor pressure deficit under RCP4.5 (2071-2100 vs 1991-2020).
+# g) Map of change mean temperature under RCP4.5 (2071-2100 vs 1991-2020).
+# h) Map of change mean precipitation under RCP4.5 (2071-2100 vs 1991-2020).
+# i) Map of change mean vapor pressure deficit under RCP4.5 (2071-2100 vs 1991-2020).
 
 # Get package and utils we need
 source("scripts/fcnt4analysis.R")
@@ -30,7 +30,7 @@ climateData <- climateData[ecodistrict %in% ecod,]
 presentClimate <- climateMean(
   climateData,
   eco_boreal,
-  yearRange = 2001:2020,
+  yearRange = 1991:2020,
   scenario = "all",
   model = "all"
 )
@@ -54,7 +54,7 @@ f3b <- climatePlot(
 rcp45Climate <- climateMean(
   climateData,
   eco_boreal,
-  yearRange = 2081:2100,
+  yearRange = 2071:2100,
   scenario = "RCP45",
   model = "all"
 )
@@ -84,7 +84,7 @@ f3d <- climatePlot(
 rcp85Climate <- climateMean(
   climateData,
   eco_boreal,
-  yearRange = 2081:2100,
+  yearRange = 2071:2100,
   scenario = "RCP85",
   model = "all"
 )

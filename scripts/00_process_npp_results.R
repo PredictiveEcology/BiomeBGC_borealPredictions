@@ -29,7 +29,7 @@ borealForest <- sf::st_union(borealForest[borealForest$TYPE == "BOREAL" | boreal
 # use this to loop across ecoregions
 eco_boreal <- sf::st_intersection(ecoprovinces, borealForest)
 
-yearRanges <- c(2000:2020, 2080:2100)
+yearRanges <- list(1991:2020, 2071:2100)
 
 outputPath <- "outputs/ecoprovince/"
 
@@ -41,7 +41,7 @@ NPP_RCP45 <- combineResults(
   vars = "daily_npp",
   ecoregions = ecoprovinces,
   outputPath = outputPath,
-  yearRange = 2071:2100,
+  yearRange = yearRanges[[2]],
   model = c("GCM4", "RCM4", "Hadley"),
   scenario = "RCP45"
 )
@@ -50,7 +50,7 @@ NPP_RCP85 <- combineResults(
   vars = "daily_npp",
   ecoregions = ecoprovinces,
   outputPath = outputPath,
-  yearRange = 2071:2100,
+  yearRange = yearRanges[[2]],
   model = c("GCM4", "RCM4", "Hadley"),
   scenario = "RCP85"
 )
@@ -59,7 +59,7 @@ NPP_present <- combineResults(
   vars = "daily_npp",
   ecoregions = ecoprovinces,
   outputPath = outputPath,
-  yearRange = 2001:2030,
+  yearRange = yearRanges[[1]],
   model = c("GCM4", "RCM4", "Hadley"),
   scenario = c("RCP45", "RCP85")
 )
@@ -72,7 +72,7 @@ NPP_RCP45_sd <- combineResults(
   vars = "daily_npp",
   ecoregions = ecoprovinces,
   outputPath = outputPath,
-  yearRange = 2071:2100,
+  yearRange = yearRanges[[2]],
   model = c("GCM4", "RCM4", "Hadley"),
   scenario = "RCP45",
   fun = "sd"
@@ -82,7 +82,7 @@ NPP_RCP85_sd <- combineResults(
   vars = "daily_npp",
   ecoregions = ecoprovinces,
   outputPath = outputPath,
-  yearRange = 2071:2100,
+  yearRange = yearRanges[[2]],
   model = c("GCM4", "RCM4", "Hadley"),
   scenario = "RCP85",
   fun = "sd"
@@ -92,7 +92,7 @@ NPP_present_sd <- combineResults(
   vars = "daily_npp",
   ecoregions = ecoprovinces,
   outputPath = outputPath,
-  yearRange = 2001:2030,
+  yearRange = yearRanges[[1]],
   model = c("GCM4", "RCM4", "Hadley"),
   scenario = c("RCP45", "RCP85"),
   fun = "sd"
@@ -107,7 +107,7 @@ NPP_present_slope <- getSlopes(
   vars = "daily_npp",
   ecoregions = ecoprovinces,
   outputPath = outputPath,
-  yearRange = 2001:2030,
+  yearRange = yearRanges[[1]],
   model = c("GCM4", "RCM4", "Hadley"),
   scenario = c("RCP45", "RCP85")
 )
@@ -116,7 +116,7 @@ NPP_RCP45_slope <- getSlopes(
   vars = "daily_npp",
   ecoregions = ecoprovinces,
   outputPath = outputPath,
-  yearRange = 2071:2100,
+  yearRange = yearRanges[[2]],
   model = c("GCM4", "RCM4", "Hadley"),
   scenario = "RCP45"
 )
@@ -125,7 +125,7 @@ NPP_RCP85_slope <- getSlopes(
   vars = "daily_npp",
   ecoregions = ecoprovinces,
   outputPath = outputPath,
-  yearRange = 2071:2100,
+  yearRange = yearRanges[[2]],
   model = c("GCM4", "RCM4", "Hadley"),
   scenario = "RCP85"
 )

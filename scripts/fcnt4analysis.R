@@ -163,6 +163,44 @@ climateMean <- function(
   return(sfObj)
 }
 
+### CREATE FUNCTION TO PLOT CLIMATE DIFFERENCE BETWEEN TWO TIME STEP
+#   # Map the difference
+#   dt_wide <- dcast(dt, ecodistrict ~ year, value.var = c("prcp", "tmin"))
+#   dt_wide$tmin_dif <- dt_wide$`tmin_2090-2100` - dt_wide$`tmin_2000-2010`
+#   dt_wide$prcp_dif <- dt_wide$`prcp_2090-2100` - dt_wide$`prcp_2000-2010`
+#   sfObj <- merge(eco_boreal, dt_wide, by.x = "ECODISTRIC", by.y = "ecodistrict")
+#   tmin_diff <- basemap +
+#     geom_sf(data = sfObj, aes(fill = tmin_dif, colour = tmin_dif)) +
+#     coord_sf(xlim = xlims, ylim = ylims, expand = FALSE) +
+#     scale_fill_distiller(
+#       "Difference in minimum temperature",
+#       palette = "RdBu",
+#       limits = c(-10, 10)
+#     ) +
+#     scale_colour_distiller(
+#       "Difference in minimum temperature",
+#       palette = "RdBu",
+#       limits = c(-10, 10)
+#     )
+#   prcp_diff <- basemap +
+#     geom_sf(data = sfObj, aes(fill = prcp_dif, colour = prcp_dif)) +
+#     coord_sf(xlim = xlims, ylim = ylims, expand = FALSE) +
+#     scale_fill_distiller(
+#       "Difference in annual precipitation",
+#       palette = "BrBG",
+#       direction = 1,
+#       limits = c(-20, 20)
+#     ) +
+#     scale_colour_distiller(
+#       "Difference in annual precipitation",
+#       palette = "BrBG",
+#       direction = 1,
+#       limits = c(-20, 20)
+#     )
+
+#   return(list(tmin_t1, tmin_t2, tmin_diff, prcp_t1, prcp_t2, prcp_diff))
+# }
+
 mapClimaticControl <- function(
     dt,
     polygons,

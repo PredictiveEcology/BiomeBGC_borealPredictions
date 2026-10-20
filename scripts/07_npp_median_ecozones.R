@@ -28,17 +28,17 @@ N_pixels <- exact_extract(npp_present[[1]], ecozones, fun = c('count'),
                           append_cols = 'ZONE_NAME')
 
 npp_present_df <- exact_extract(mean(npp_present), ecozones,
-                                fun = "quantile",
+                                fun = c("quantile","stdev", "mean"),
                                 quantiles = c(0.25, 0.50, 0.75),
                                 append_cols = 'ZONE_NAME')
 
 npp_rcp45_df <- exact_extract(mean(npp_rcp45), ecozones,
-                              fun = "quantile",
+                              fun = c("quantile","stdev", "mean"),
                               quantiles = c(0.25, 0.50, 0.75),
                               append_cols = 'ZONE_NAME')
 
 npp_rcp85_df <- exact_extract(mean(npp_rcp85), ecozones,
-                              fun = "quantile",
+                              fun = c("quantile","stdev", "mean"),
                               quantiles = c(0.25, 0.50, 0.75),
                               append_cols = 'ZONE_NAME')
 
@@ -87,10 +87,11 @@ map <- basemap +
           alpha = 0.4,
           colour = "black",
           linewidth = 0.3) +
-  geom_sf_text(data = label_pts,
-               aes(label = ID),
-               size = 4,
-               fontface = "bold") +
+  geom_sf_label(data = label_pts,
+                aes(label = ID),
+                size = 2,
+                alpha = 0.75,
+                fontface = "bold") +
   coord_sf(xlim = xlims, ylim = ylims, expand = FALSE) +
   scale_fill_brewer(palette = "Dark2") +
   theme(legend.position = "none", axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank(), panel.background = element_rect(color = "black"))
@@ -100,7 +101,7 @@ results$ecozone[results$ecozone == "Boreal PLain"] <- "Boreal Plain"
 eczns <- unique(results$ecozone)
 ecozone_labs <- paste0("(", 1:length(eczns), ") ", eczns)
 results$ecozone <- factor(results$ecozone, levels = eczns, labels = ecozone_labs)
-results$scenario <- factor(results$scenario, levels = c("present", "rcp45", "rcp85"), labels = c("2001-2030", "RCP 4.5", "RCP 8.5"))
+results$scenario <- factor(results$scenario, levels = c("present", "rcp45", "rcp85"), labels = c("1991-2020", "RCP 4.5", "RCP 8.5"))
 
 
 fig6 <- ggplot(results) +
@@ -132,4 +133,4 @@ ggdraw(fig6) +
     height = 0.35 # fraction of figure height
   )
 
-ggsave("figures/spatialResults.png")
+ggsave("figures/spatialResults.png", scale = 1, width= 9, height = 5)

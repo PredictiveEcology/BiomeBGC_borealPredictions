@@ -18,7 +18,7 @@ fig7a <- plotNPP(npp_present, stat = "trend")
 fig7b <- plotNPP(npp_rcp45, stat = "trend")
 fig7c <- plotNPP(npp_rcp85, stat = "trend")
 
-npp_plots <- ((fig7a + ggtitle("(a) 2001-2030")) |
+npp_plots <- ((fig7a + ggtitle("(a) 1991-2020")) |
                 (fig7b+ ggtitle("(b) RCP 4.5")) |
                 (fig7c + ggtitle("(c) RCP 8.5"))) & theme(legend.position = "bottom", legend.title.position = "top", legend.key.height = unit(8, "pt"))
 
