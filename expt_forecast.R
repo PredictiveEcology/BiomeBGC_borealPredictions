@@ -42,7 +42,7 @@ expt_df <- data.table::setorder(expt_df, ecoprovince, co2scenario)
 for (i in 1:nrow(expt_df)) {
   pars <- expt_df[i, ]
   with(pars, {
-    source("global.R")
+    source("global_forecast.R")
   })
 }
 
