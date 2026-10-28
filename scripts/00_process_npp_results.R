@@ -1,3 +1,10 @@
+# Get summarize the primary productivity results of the simulation
+
+# Define the path to the climate data
+# This is the folder containing all the .qs output files that were created when running the simulations
+# If running the simulations, the folder should be the output path define in expt_forecast.R
+outputPath <- "~/ecoprovince3/" # ***TO CHANGE TO THE CORRECT PATH***
+
 library(reproducible)
 library(sf)
 library(terra)
@@ -30,8 +37,6 @@ borealForest <- sf::st_union(borealForest[borealForest$TYPE == "BOREAL" | boreal
 eco_boreal <- sf::st_intersection(ecoprovinces, borealForest)
 
 yearRanges <- list(1991:2020, 2071:2100)
-
-outputPath <- "outputs/ecoprovince/"
 
 # Create a data frame with all combinations of CO2 scenarios, and climate models
 ecoprovinces <- unique(eco_boreal$ECOPROVINC)

@@ -15,6 +15,10 @@ library(ggpubr)
 library(lme4)
 source("scripts/fcnt4analysis.R")
 
+# Folder containng the outputs of the validation runs. 
+# If running the simulations from scratch, should be the output path define in expt_validation.R
+validationOutputDir <- "~/repos/BiomeBGC/BiomeBGC_validation/outputs" # ***TO CHANGE TO THE CORRECT PATH***
+
 towerName <- c(
   "CA-Gro",
   "CA-HPC",
@@ -35,8 +39,6 @@ towerName <- c(
   #"CA-SJ2", # removed because harvested just before
   "CA-Na1"
 )
-
-validationOutputDir <- "~/repos/BiomeBGC_validation/outputs"
 
 # create an empty data.frame to store the results
 results <- data.frame(
@@ -114,6 +116,7 @@ m1_dat$pred_siteMean_c <- m1_dat$pred_siteMean - mean(m1_dat$pred_siteMean)
 
 m1 <- lmer(tower ~ pred_siteMean_c + pred_anomaly + (1 | towerName) + (0 + pred_anomaly | towerName), data = m1_dat, control = lmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
 summary(m1)
+confint(m1)
 linearHypothesis(m1, "pred_siteMean_c = 1")
 linearHypothesis(m1, "pred_anomaly = 1")
 r.squaredGLMM(m1)
@@ -127,6 +130,7 @@ m2_dat$pred_siteMean_c <- m2_dat$pred_siteMean - mean(m2_dat$pred_siteMean)
 
 m2 <- lmer(tower ~ pred_siteMean_c + pred_anomaly + (1 | towerName), data = m2_dat)
 summary(m2)
+confint(m2)
 linearHypothesis(m2, "pred_siteMean_c = 1")
 linearHypothesis(m2, "pred_anomaly = 1")
 r.squaredGLMM(m2)
