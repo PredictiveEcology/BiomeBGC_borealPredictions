@@ -11,39 +11,8 @@ library(reproducible)
 library(sf)
 library(data.table)
 
-# extract ecodistricts in the boreal forest
-ecod <- prepInputs(
-  url = "https://sis.agr.gc.ca/cansis/nsdb/ecostrat/district/ecodistrict_shp.zip",
-  destinationPath = "inputs",
-  fun = "sf::st_read"
-)
-
-ecodistricts <- prepInputs(
-  url = "https://sis.agr.gc.ca/cansis/nsdb/ecostrat/district/ecodistrict_shp.zip",
-  targetFile = "ecodistricts.shp",
-  destinationPath = "inputs",
-  fun = "sf::st_read"
-)
-
-borealForest <- prepInputs(
-  url = "https://d278fo2rk9arr5.cloudfront.net/downloads/boreal.zip",
-  targetFile = "NABoreal.shp",
-  destinationPath = "inputs",
-  fun = "sf::st_read"
-)
-
-ecodistricts <- st_transform(ecodistricts, 3978)
-borealForest <- st_transform(borealForest, 3978)
-
-ecodistricts <- st_make_valid(ecodistricts)
-borealForest <- st_make_valid(borealForest)
-
-borealForest <- st_union(borealForest[
-  borealForest$TYPE == "BOREAL" |
-    borealForest$TYPE == "B_ALPINE",
-])
-
-eco_boreal <- st_intersection(ecodistricts, borealForest)
+# ecodistricts in the boreal forest
+eco_boreal <- getEcoBoreal()
 
 # Create a data frame with all combinations of ecodistricts, CO2 scenarios, and climate models
 ecodistricts <- unique(eco_boreal$ECODISTRIC)

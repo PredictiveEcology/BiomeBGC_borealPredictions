@@ -21,6 +21,9 @@ library(ggplot2)
 library(patchwork)
 library(ggpubr)
 
+# ecodistricts in the boreal forest
+eco_boreal <- getEcoBoreal()
+
 # Aggregate meteo data
 climateData <- fread("data/processed/climate_bioclimatic_indices.csv")
 ecod <- unique(climateData[climateData$scenario == "RCP85",]$ecodistrict)

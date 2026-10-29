@@ -44,7 +44,7 @@ npp_rcp85_df <- exact_extract(mean(npp_rcp85), ecozones,
 
 results <- data.frame(ecozone = rep(N_pixels$ZONE_NAME, 3),
                       nPix = rep(N_pixels$count, 3),
-                      scenario = rep(c("present", "rcp45", "rcp85"), each = 15),
+                      scenario = rep(c("present", "rcp45", "rcp85"), each = 14),
                       npp_median = c(npp_present_df$q50, npp_rcp45_df$q50, npp_rcp85_df$q50) * 365 * 1000,
                       npp_lower = c(npp_present_df$q25, npp_rcp45_df$q25, npp_rcp85_df$q25) * 365 * 1000,
                       npp_upper = c(npp_present_df$q75, npp_rcp45_df$q75, npp_rcp85_df$q75) * 365 * 1000
