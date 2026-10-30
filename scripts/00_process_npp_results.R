@@ -107,6 +107,7 @@ writeRaster(NPP_present_sd, "data/processed/NPP_present_sd.tif", overwrite = TRU
 writeRaster(NPP_RCP45_sd, "data/processed/NPP_RCP45_sd.tif", overwrite = TRUE)
 writeRaster(NPP_RCP85_sd, "data/processed/NPP_RCP85_sd.tif", overwrite = TRUE)
 
+### NOT USED IN THE MANUSCRIPT - DECIDED THIS WAS TOO MUCH FOR THE PAPER AND WAS TOO CONFUSING TO DISSECT
 # For each scenario x model, create a raster of trend NPP over the entire boreal forest
 NPP_present_slope <- getSlopes(
   vars = "daily_npp",

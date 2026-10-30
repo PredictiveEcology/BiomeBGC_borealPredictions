@@ -1,3 +1,5 @@
+### NOT USED IN THE MANUSCRIPT - DECIDED THIS WAS TOO MUCH FOR THE PAPER AND WAS TOO CONFUSING TO DISSECT
+
 library(terra)
 library(reproducible)
 library(exactextractr)
